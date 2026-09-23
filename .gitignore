@@ -1,0 +1,21 @@
+# Compiled class files
+**/target/
+*.class
+
+# Eclipse / STS metadata
+**/.classpath
+**/.project
+**/.settings/
+**/.metadata/
+
+# IntelliJ IDEA metadata
+**/.idea/
+*.iml
+*.iws
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
