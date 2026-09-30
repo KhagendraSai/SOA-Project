@@ -2,6 +2,9 @@ package com.school.auth.service;
 
 import com.school.auth.entity.User;
 import com.school.auth.repository.UserRepository;
+
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +55,9 @@ public class AuthService {
 
         return jwtService.generateToken(user.getUsername(), user.getRole());
     }
+    
+    public List<User> getAllUsers() {
+        return repository.findAll();
+    }
+    
 }

@@ -2,6 +2,9 @@ package com.school.auth.controller;
 
 import com.school.auth.entity.User;
 import com.school.auth.service.AuthService;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +27,10 @@ public class AuthController {
         String token = service.login(request.getUsername(), request.getPassword());
         return new LoginResponse(token);
     }
-
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return service.getAllUsers();
+    }
     public static class LoginRequest {
         private String username;
         private String password;
