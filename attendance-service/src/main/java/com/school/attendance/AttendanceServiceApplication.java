@@ -9,6 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class AttendanceServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AttendanceServiceApplication.class, args);
+        SpringApplication.run(
+                AttendanceServiceApplication.class, args);
     }
 }

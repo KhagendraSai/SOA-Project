@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import feign.FeignException;
 
 @Service
 public class AttendanceService {
@@ -24,11 +25,22 @@ public class AttendanceService {
     }
 
     public Attendance create(Attendance attendance) {
-        // Verify that student exists via OpenFeign call
+
         try {
             studentClient.getStudent(attendance.getStudentId());
-        } catch (Exception e) {
-            throw new RuntimeException("Student with ID " + attendance.getStudentId() + " not found");
+
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException(
+                    "Student with ID "
+                    + attendance.getStudentId()
+                    + " not found"
+            );
+
+        } catch (FeignException e) {
+            throw new RuntimeException(
+                    "Student Service request failed with HTTP status "
+                    + e.status()
+            );
         }
 
         return repository.save(attendance);
